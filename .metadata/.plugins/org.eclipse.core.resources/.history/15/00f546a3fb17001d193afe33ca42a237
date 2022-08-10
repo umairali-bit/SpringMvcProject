@@ -1,0 +1,19 @@
+package com.springmvc.main.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class MainController {
+
+	@RequestMapping("/")
+	public String sayHello() { 
+		return "/WEB-INF/jsps/index.jsp";
+	}
+	
+	
+	@RequestMapping("/products")
+	public String showProducts() {
+		return "products.jsp";
+	}
+}

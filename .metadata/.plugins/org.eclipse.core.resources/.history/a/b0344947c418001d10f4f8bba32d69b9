@@ -1,0 +1,5 @@
+package com.springmvc.main.model;
+
+public class Customer {
+
+}

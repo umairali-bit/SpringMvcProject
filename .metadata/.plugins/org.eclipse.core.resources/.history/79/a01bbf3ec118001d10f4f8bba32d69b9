@@ -1,0 +1,22 @@
+package com.springmvc.main.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class CustomerController {
+	
+	@RequestMapping("/add-customer")
+	public String showAddCustomer() {
+		return "add-customer";
+		
+	}
+	
+	@RequestMapping("/process-add-customer")
+	public void processAddCustomer(@RequestParam("cname") String name,
+									@RequestParam("ccity") String city) {
+		System.out.println("customer info " + name + "-----" + city);
+	}
+
+}
