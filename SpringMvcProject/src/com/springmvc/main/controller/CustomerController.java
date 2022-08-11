@@ -2,11 +2,13 @@ package com.springmvc.main.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import java.util.List;
 import com.springmvc.main.model.Customer;
 import com.springmvc.main.service.CustomerService;
+
 
 @Controller
 public class CustomerController {
@@ -19,30 +21,35 @@ public class CustomerController {
 	
 	
 	@RequestMapping("/add-customer")
-	public String showAddCustomer() {
+	public String showAddCustomer(Model model) {
+		model.addAttribute("msg", ""); 
 		return "add-customer";
-		
 	}
 	
 	@RequestMapping("/process-add-customer")
-	public void processAddCustomer(@RequestParam("cname") String name,
-									@RequestParam("ccity") String city,
-									@RequestParam("cage") Integer age) {
-		
-		
-		
+	public String processAddCustomer(@RequestParam("cname") String name,
+								   @RequestParam("ccity") String city,
+								   @RequestParam("cage") int age, 
+								   Model model) {
 		/*
 		 * 1. Attach the values to customer object
-		 * 2. Reach out to persistence layer via service and insert the object in DB
+		 * 2. Reach out to persistence layer via service and insert the object in DB  
 		 */
-		//System.out.println("customer info " + name + "-----" + city);
-		
 		customer.setName(name);
 		customer.setCity(city);
 		customer.setAge(age);
 		
-		customerService.insertCustomer(customer);
-		
+		customerService.insertCustomer(customer); 
+		model.addAttribute("msg", "Customer added in DB"); 
+		return "add-customer";
+	}
+	
+	@RequestMapping("/view-customers")
+	public String fetchAllCustomers(Model model) {
+		//go to DB via service and fetch customers as List<Customer>
+		List<Customer> list = customerService.fetchAllCustomers();
+		model.addAttribute("customer_list",list);
+		return "customers"; 
 	}
 
 }

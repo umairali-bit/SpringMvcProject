@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = {"com.springmvc.main.controller","com.springmvc.main.model"
-								,"com.springmvc.main.service"})
+								,"com.springmvc.main.service","com.springmvc.main.persistence"})
 public class ControllerConfig implements WebMvcConfigurer{
 	
 	
@@ -27,7 +27,7 @@ public class ControllerConfig implements WebMvcConfigurer{
 		return vr;
 	}
 	
-	//connecting db
+	//configuration to DB
 	@Bean
 	public DataSource getDataSource() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
