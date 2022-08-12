@@ -51,5 +51,44 @@ public class CustomerController {
 		model.addAttribute("customer_list",list);
 		return "customers"; 
 	}
+	
+	@RequestMapping("/delete-customer")
+	public String deleteCustomer(@RequestParam("id") Long id, Model model) {
+		customerService.deleteCustomer(id);
+		List<Customer> list = customerService.fetchAllCustomers();
+		model.addAttribute("customer_list", list);
+		return "customers";
+	}
+	
+	
+	@RequestMapping("/edit-customer")
+	public String editCustomer(@RequestParam("id") Long id, Model model) {
+		Customer customer = customerService.fetchCustomerById(id);
+		System.out.println(customer);
+		//display the form which is auto-filled with above customerInfo
+		model.addAttribute("customer", customer);
+		model.addAttribute("msg","");
+		return "edit-customer";
+	}
+	
+	
+	
+	@RequestMapping("/process-edit-customer")
+	public String processEditCustomer(@RequestParam("id") Long id,
+			@RequestParam("cname") String name,
+			   @RequestParam("ccity") String city,
+			   @RequestParam("cage") int age, 
+			   Model model) {
+
+		customer.setId(id);
+		customer.setName(name);
+		customer.setCity(city);
+		customer.setAge(age);
+
+		customerService.editCustomer(customer);
+		List<Customer> list = customerService.fetchAllCustomers();
+		model.addAttribute("customer_list",list);
+		return "customers";
+	}
 
 }

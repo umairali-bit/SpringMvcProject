@@ -1,0 +1,14 @@
+package com.springmvc.main.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+@Controller
+public class EmployeeController {
+	
+	@RequestMapping("/show-employees")
+	public String showEmployees() {
+		
+	}
+
+}

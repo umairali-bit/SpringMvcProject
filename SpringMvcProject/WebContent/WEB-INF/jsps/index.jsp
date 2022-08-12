@@ -12,7 +12,8 @@
 <a href="<%=request.getContextPath() %>/products"> Products </a><br />
 <a href="<%=request.getContextPath() %>/vendors"> Vendors </a><br />
 <a href="<%=request.getContextPath() %>/add-customer"> Add Customer </a><br />
-<a href="<%=request.getContextPath() %>/view-customers">View Customers</a>
+<a href="<%=request.getContextPath() %>/view-customers">View Customers</a><br />
+<a href="<%=request.getContextPath() %>/employee-list">Show Employees</a>
 
 </body>
 </html>
